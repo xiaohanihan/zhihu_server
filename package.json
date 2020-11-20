@@ -1,0 +1,26 @@
+{
+  "name": "zhihu_server",
+  "version": "1.0.0",
+  "description": "防知乎服务端",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=DEV nodemon app/index.js",
+    "build": "cross-env NODE_ENV=PRO  nodemon app/index.js"
+  },
+  "author": "hanzhang",
+  "license": "ISC",
+  "dependencies": {
+    "cross-env": "^7.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-json-error": "^3.1.2",
+    "koa-parameter": "^3.0.1",
+    "koa-router": "^10.0.0",
+    "mongoose": "^5.10.15"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}

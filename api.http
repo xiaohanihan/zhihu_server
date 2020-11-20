@@ -1,0 +1,33 @@
+GET http://localhost:3000
+
+###
+GET http://localhost:3000/users
+
+###
+GET  http://localhost:3000/users/5fb75b904ab8d873ec2c924f
+
+###
+POST http://localhost:3000/users  
+User-Agent: rest-client
+Accept-Language: en-GB,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4
+Content-Type: application/json
+
+{
+    "account": "zh",
+    "password": "123456",
+    "nickName": "小涵涵"
+}
+
+###
+PUT http://localhost:3000/users/5fb75b904ab8d873ec2c9243  
+User-Agent: rest-client
+Accept-Language: en-GB,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4
+Content-Type: application/json
+
+{
+    "name": "康佩斯",
+    "age": 19
+}
+
+###
+DELETE http://localhost:3000/users/5fb75d677019a56cb8435514 
