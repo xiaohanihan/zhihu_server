@@ -5,7 +5,7 @@ const { secret } = require('../config')
 const userList = [
     { name: '小红' }
 ]
-
+// 备注22
 class UserController {
 
     async checkRight(ctx, next) {
