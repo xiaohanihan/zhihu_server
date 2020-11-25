@@ -1,15 +1,12 @@
 {
     "version": "0.2.0",
     "configurations": [
+        
         {
             "type": "node",
-            "request": "launch",
+            "request": "attach",
             "name": "Launch Program",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}\\index.js",
-            "runtimeExecutable": "npm"
+            "processId": "${command:PickProcess}"
         }
     ]
 }

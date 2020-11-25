@@ -1,7 +1,7 @@
-GET http://localhost:3000
+GET http://localhost:4000
 
 ###
-GET http://localhost:3000/users
+GET http://localhost:4000/users
 
 ###
 GET  http://localhost:3000/users/5fb75b904ab8d873ec2c924f
@@ -13,21 +13,49 @@ Accept-Language: en-GB,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4
 Content-Type: application/json
 
 {
-    "account": "zh",
+    "account": "zh1",
     "password": "123456",
-    "nickName": "小涵涵"
+    "nickName": "hhh"
 }
 
 ###
-PUT http://localhost:3000/users/5fb75b904ab8d873ec2c9243  
+PUT http://localhost:3000/users/5fb78cbaa4c7a93870f33475
+User-Agent: rest-client
+Accept-Language: en-GB,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmI3OGNiYWE0YzdhOTM4NzBmMzM0NzUiLCJhY2NvdW50IjoiemgiLCJpYXQiOjE2MDYxMTc3NjYsImV4cCI6MTYwNjIwNDE2Nn0.GgVsffiWU1cQ3hhT8U22KjUePJ26yJQAQr3ZSEhvAdA
+
+{
+    "account": "zh",
+    "password": "123456",
+    "nickName": "乌拉"
+}
+
+###
+DELETE http://localhost:3000/users/5fbcdad5e1ddfe722c6d47ca 
+
+### 登录
+POST http://localhost:3000/users/login
 User-Agent: rest-client
 Accept-Language: en-GB,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4
 Content-Type: application/json
 
 {
-    "name": "康佩斯",
-    "age": 19
+    "account": "zh",
+    "password": "123456"
 }
 
-###
-DELETE http://localhost:3000/users/5fb75d677019a56cb8435514 
+### 上传图片
+POST http://localhost:3000/upload
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="text"; 
+
+title
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="1.png"
+Content-Type: image/png
+
+< C:\Users\一个大帅哥\Pictures\ttt.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--

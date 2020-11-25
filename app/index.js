@@ -1,19 +1,23 @@
 const Koa = require('koa')
 const KoaRouter = require('koa-router')
-const bodyParser = require('koa-bodyparser')
+const koaBody = require('koa-body')
 const koaJsonError = require('koa-json-error')
 const parameter = require('koa-parameter')
+const path = require('path')
+const koaStatic = require('koa-static')
 const routing = require('./routes')
 const mongoose = require('mongoose')
+const { mongodbUrl } = require('./config')
 
 const app = new Koa();
 
-mongoose.connect('mongodb://127.0.0.1:27017/admin',{ 
+mongoose.connect(mongodbUrl, {
     useNewUrlParser: true,
     user: 'root',
     pass: 'root',
-    useUnifiedTopology: true
- },() => {console.log('mongoose启动成功')})
+    useUnifiedTopology: true,
+    useFindAndModify: false
+}, () => { console.log('mongoose启动成功') })
 mongoose.connection.on('error', console.error)
 
 /**
@@ -30,14 +34,20 @@ const dealError = async (ctx, next) => {
     }
 }
 
+app.use(koaStatic(path.join(__dirname, '/public')))
 app.use(koaJsonError({
-    postFormat: (e, {stack, ...rest}) => {
-        const d = process.env.NODE_ENV === 'DEV'?{stack, ...rest}:rest;
+    postFormat: (e, { stack, ...rest }) => {
+        const d = process.env.NODE_ENV === 'DEV' ? { stack, ...rest } : rest;
         return d
     }
 }))
-
 app.use(parameter(app))
-app.use(bodyParser())
+app.use(koaBody({
+    multipart: true,
+    formidable: {
+        uploadDir: path.join(__dirname, '/public/uploads'),
+        keepExtensions: true
+    }
+}))
 routing(app)
-app.listen(3000)
+app.listen(4000)
