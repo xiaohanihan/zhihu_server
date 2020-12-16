@@ -1,8 +1,7 @@
 const KoaRouter = require('koa-router')
 const jsonwebtoken = require('jsonwebtoken')
-const jwt = require('koa-jwt')
 const { findUsers, findUserById, addUser, updateUser, deleteUser, login, checkRight } = require('../controllers/users')
-const { secret } = require('../config')
+const jwtAuth = require('../utils/jwtAuth')
 
 const userRouter = new KoaRouter({ prefix: '/users' })
 
@@ -25,7 +24,7 @@ const auth = async (ctx, next) => {
     await next()
 }
 
-const jwtAuth = jwt({ secret })
+
 
 userRouter.get('/', findUsers)
 

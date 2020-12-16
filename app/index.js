@@ -3,6 +3,7 @@ const KoaRouter = require('koa-router')
 const koaBody = require('koa-body')
 const koaJsonError = require('koa-json-error')
 const parameter = require('koa-parameter')
+const parameterRewrite = require('./utils/koa_paramer_rewrite')
 const path = require('path')
 const koaStatic = require('koa-static')
 const routing = require('./routes')
@@ -41,7 +42,7 @@ app.use(koaJsonError({
         return d
     }
 }))
-app.use(parameter(app))
+app.use(parameterRewrite(app))
 app.use(koaBody({
     multipart: true,
     formidable: {
