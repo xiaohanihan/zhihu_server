@@ -12,5 +12,4 @@ class HomeController {
     }
     //备注111
 }
-
 module.exports = new HomeController()

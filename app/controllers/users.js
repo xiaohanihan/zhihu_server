@@ -142,6 +142,29 @@ class UserController {
             token
         }
     }
+
+    /**
+     * 根据用户token获取用户信息
+     */
+    async findUserByToken(ctx) {
+        const {
+            token
+        } = ctx.params;
+        try {
+            const {
+                _id
+            } = jsonwebtoken.verify(token, secret);
+            // 根据id去数据库查询用户信息
+            const user = await User.findById(_id);
+            if (!user) {
+                ctx.throw(401, '请重新登录')
+            }
+            ctx.body = user;
+        } catch (error) {
+            ctx.throw(401, error.message)
+        }
+
+    }
 }
 
 module.exports = new UserController();

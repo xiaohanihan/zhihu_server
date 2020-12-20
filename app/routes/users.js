@@ -1,6 +1,6 @@
 const KoaRouter = require('koa-router')
 const jsonwebtoken = require('jsonwebtoken')
-const { findUsers, findUserById, addUser, updateUser, deleteUser, login, checkRight } = require('../controllers/users')
+const { findUsers, findUserById, addUser, updateUser, deleteUser, login, checkRight, findUserByToken } = require('../controllers/users')
 const jwtAuth = require('../utils/jwtAuth')
 
 const userRouter = new KoaRouter({ prefix: '/users' })
@@ -29,9 +29,14 @@ const auth = async (ctx, next) => {
 userRouter.get('/', findUsers)
 
 /**
- * 获得用户
+ * 根据_Id获得用户
  */
 userRouter.get('/:id', findUserById)
+
+/**
+ * 根据token获取用户
+ */
+userRouter.get('/token/:token', findUserByToken);
 
 /**
  * 新增用户

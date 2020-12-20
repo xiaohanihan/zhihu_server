@@ -1,9 +1,9 @@
 GET http://localhost:4000
 
-###
+### 获取所有用户
 GET http://localhost:4000/users
 
-###
+### 获取某个用户的信息
 GET  http://localhost:3000/users/5fb75b904ab8d873ec2c924f
 
 ### 注册
